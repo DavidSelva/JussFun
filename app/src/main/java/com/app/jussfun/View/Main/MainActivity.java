@@ -9,18 +9,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.app.jussfun.Adapter.MainVPAdapter;
 import com.app.jussfun.R;
 import com.app.jussfun.Utils.BSDFiltersRandom;
 import com.app.jussfun.Utils.ServiceDestroyApp;
 import com.app.jussfun.View.Random.RandomPeopleFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.BottomSheetListener{
+public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.BottomSheetListener {
 
-    private TabLayout tabLayout,tabLayout1;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private TabLayout tabLayout, tabLayout1;
     public static ViewPager viewPager;
     private int index;
     private View main_separate_line;
@@ -86,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
         tabLayout1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                    index = tab.getPosition();
+                index = tab.getPosition();
 
-                if (tab.getPosition()==1) {
+                if (tab.getPosition() == 1) {
                     tab.setIcon(R.drawable.main_chat_p);
                     tabLayout1.getTabAt(0).setIcon(R.drawable.main_discover);
                     tabLayout1.getTabAt(2).setIcon(R.drawable.main_me);
                 }
-                if (tab.getPosition()==2) {
+                if (tab.getPosition() == 2) {
                     tab.setIcon(R.drawable.main_me_p);
                     tabLayout1.getTabAt(0).setIcon(R.drawable.main_discover);
                     tabLayout1.getTabAt(1).setIcon(R.drawable.main_chat);
@@ -121,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
 
             @Override
             public void onPageSelected(int position) {
-                    if(position==0){
-                        convertToTabLayout();
-                    }
+                if (position == 0) {
+                    convertToTabLayout();
+                }
             }
 
             @Override
@@ -135,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
 
     }
 
-    private void convertToTabLayout(){
-        if(index ==0){
+    private void convertToTabLayout() {
+        if (index == 0) {
             tabLayout1.getTabAt(0).setIcon(R.drawable.main_discover_p);
             tabLayout1.getTabAt(2).setIcon(R.drawable.main_me);
             tabLayout1.getTabAt(1).setIcon(R.drawable.main_chat);
@@ -146,14 +147,14 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
         }
     }
 
-    private void addIconTabLayout(){
+    private void addIconTabLayout() {
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) tab.setCustomView(R.layout.view_home_tab);
         }
     }
 
-    private void addIconTabLayout1(){
+    private void addIconTabLayout1() {
         for (int i = 0; i < tabLayout1.getTabCount(); i++) {
             TabLayout.Tab tab1 = tabLayout1.getTabAt(i);
             if (tab1 != null) tab1.setCustomView(R.layout.view_home_tab);
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
             finishAffinity();
             System.exit(0);
             Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(homeIntent);
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements BSDFiltersRandom.
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
 
             }
         }, 2000);
