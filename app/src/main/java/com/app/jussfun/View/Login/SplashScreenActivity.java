@@ -2,12 +2,17 @@ package com.app.jussfun.View.Login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +21,8 @@ import com.app.jussfun.Models.DataFire;
 import com.app.jussfun.R;
 import com.app.jussfun.View.Main.MainActivity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -32,6 +39,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             changeLanguage(language_key);
         }
 
+//        printKeyHash();
         setSplashy();
         setContentView(R.layout.activity_splash_screen);
     }
@@ -100,8 +108,20 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }.onComplete();
 
+    }
 
-
+    private void printKeyHash() {
+        // Add code to print out the key hash
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException e) {
+            Log.e("KeyHash:", e.toString());
+        }
     }
 
 }

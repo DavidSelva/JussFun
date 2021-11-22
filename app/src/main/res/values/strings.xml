@@ -1,19 +1,19 @@
 <resources>
 
 
-    <string name="app_name" translatable="false">JUSSSFUN</string>
+    <string name="app_name" translatable="false">JUSS FUN</string>
 
     <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
     <!-- Get your own App ID at https://dashboard.agora.io/ -->
     <!-- After you entered the App ID, remove <##> outside of Your App ID -->
-    <string name="agora_app_id" translatable="false">put here</string>
+    <string name="agora_app_id" translatable="false">a06c2507b4c5448b8889623d6570e44d</string>
 
     <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
     <string name="agora_access_token" translatable="false">#YOUR ACCESS TOKEN#</string>
 
     <!--  LOGIN FACEBOOK -->
-    <string name="facebook_app_id" translatable="false">put here</string>
-    <string name="fb_login_protocol_scheme" translatable="false">put here</string>
+    <string name="facebook_app_id" translatable="false">1393665711030123</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1393665711030123</string>
 
 
 
